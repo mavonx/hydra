@@ -3,7 +3,7 @@
 #include "hydra/app.hpp"
 
 int main() {
-    std::cout << hydra::get_message() << '\n';
+    hydra::run();
 
     return 0;
 }
