@@ -5,13 +5,15 @@
 using namespace ftxui;
 
 namespace hydra {
-    void run() {
+    void run(std::string_view csv_path) {
         auto screen = ScreenInteractive::FullscreenAlternateScreen();
+        const std::string file_name(csv_path);
 
         auto renderer = Renderer([&] {
             auto top = hbox({
                 text("hydra❤️"),
-                filler()
+                filler(),
+                text(file_name)
             });
 
             auto bottom = hbox({
