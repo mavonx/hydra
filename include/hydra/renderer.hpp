@@ -3,5 +3,7 @@
 #include <string_view>
 
 namespace hydra {
-    void run(std::string_view csv_path);
+    void render(
+        std::string_view csv_path
+    );
 }

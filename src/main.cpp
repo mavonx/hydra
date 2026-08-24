@@ -1,7 +1,7 @@
 #include <iostream>
 
-#include "hydra/app.hpp"
 #include "hydra/validate.hpp"
+#include "hydra/renderer.hpp"
 
 int main(int argc, char* argv[]) {
     if (argc != 2) {
@@ -26,7 +26,7 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    hydra::run(csv_path);
+    hydra::render(csv_path);
 
     return 0;
 }

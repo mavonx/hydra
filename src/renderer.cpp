@@ -1,19 +1,18 @@
 #include <ftxui/ftxui.hpp>
 
-#include "hydra/app.hpp"
+#include "hydra/renderer.hpp"
 
 using namespace ftxui;
 
 namespace hydra {
-    void run(std::string_view csv_path) {
+    void render(std::string_view csv_path) {
         auto screen = ScreenInteractive::FullscreenAlternateScreen();
         const std::string file_name(csv_path);
 
         auto renderer = Renderer([&] {
             auto top = hbox({
-                text("hydra❤️"),
-                filler(),
-                text(file_name)
+                text(file_name),
+                filler()
             });
 
             auto bottom = hbox({
