@@ -3,14 +3,13 @@
 #include <string_view>
 
 namespace hydra {
-    enum class CsvPathStatus {
-        Ok,          // existing, readable regular file with a .csv extension
-        NotCsv,      // the extension is not ".csv"
-        NotOpenable  // missing, not a regular file, or not readable
-    };
+    // True when `path` ends with ".csv" (case-insensitive).
+    bool has_csv_extension(std::string_view path);
 
-    // Validates that `path` points to an existing, readable regular file with
-    // a ".csv" extension. Never reads the file content, so it can be unit
-    // tested without any CSV parsing.
-    CsvPathStatus validate_csv_path(std::string_view path);
+    // True when `path` exists on disk (any kind of entry).
+    bool file_exists(std::string_view path);
+
+    // True when `path` is an existing regular file that can be opened for
+    // reading. Never reads the file content.
+    bool is_readable_file(std::string_view path);
 }

@@ -11,15 +11,19 @@ int main(int argc, char* argv[]) {
 
     const std::string_view csv_path = argv[1];
 
-    switch (hydra::validate_csv_path(csv_path)) {
-        case hydra::CsvPathStatus::NotCsv:
-            std::cerr << "Error: file must be a .csv file\n";
-            return 1;
-        case hydra::CsvPathStatus::NotOpenable:
-            std::cerr << "Could not open file: " << csv_path << "\n";
-            return 1;
-        case hydra::CsvPathStatus::Ok:
-            break;
+    if (!hydra::has_csv_extension(csv_path)) {
+        std::cerr << "Error: file must be a .csv file\n";
+        return 1;
+    }
+
+    if (!hydra::file_exists(csv_path)) {
+        std::cerr << "Error: file does not exist: " << csv_path << "\n";
+        return 1;
+    }
+
+    if (!hydra::is_readable_file(csv_path)) {
+        std::cerr << "Could not open file: " << csv_path << "\n";
+        return 1;
     }
 
     hydra::run(csv_path);
