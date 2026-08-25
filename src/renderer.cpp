@@ -15,8 +15,9 @@ namespace hydra {
     ) {
         auto screen = ScreenInteractive::FullscreenAlternateScreen();
 
-        std::ostringstream ss;
-        ss << std::fixed << std::setprecision(2) << file_size_gb << " GB";
+        std::ostringstream stream;
+        stream << std::fixed << std::setprecision(2) << file_size_gb;
+        std::string formatted_size = stream.str();
 
         const std::string file_info =
             std::string(csv_path) +
@@ -24,7 +25,7 @@ namespace hydra {
             std::to_string(total_rows) +
             " rows " +
             "(file: " +
-            std::to_string(file_size_gb) +
+            formatted_size +
             " GB)";
 
         auto renderer = Renderer([&] {
