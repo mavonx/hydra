@@ -2,6 +2,7 @@
 
 #include "hydra/validate.hpp"
 #include "hydra/renderer.hpp"
+#include "hydra/inspect.hpp"
 
 int main(int argc, char* argv[]) {
     if (argc != 2) {
@@ -26,7 +27,11 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    hydra::render(csv_path);
+    hydra::render(
+        csv_path,
+        hydra::get_file_size_gb(csv_path),
+        hydra::count_csv_rows(csv_path)
+    );
 
     return 0;
 }
