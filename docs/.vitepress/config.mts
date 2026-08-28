@@ -3,6 +3,7 @@ import { withMermaid } from 'vitepress-plugin-mermaid';
 
 export default withMermaid(
   defineConfig({
+    base: '/hydra/',
     title: 'hydra',
     description: 'A fast, low-memory CLI for exploring massive CSV datasets without crashing.',
     lang: 'en-US',
