@@ -17,7 +17,7 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    if (!hydra::file_exists(csv_path)) {
+    if (!hydra::exists(csv_path)) {
         std::cerr << "Error: file does not exist: " << csv_path << "\n";
         return 1;
     }

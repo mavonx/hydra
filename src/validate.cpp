@@ -22,7 +22,7 @@ namespace hydra {
                           });
     }
 
-    bool file_exists(std::string_view path) {
+    bool exists(std::string_view path) {
         std::error_code ec;
         return std::filesystem::exists(std::filesystem::path{std::string(path)}, ec);
     }
