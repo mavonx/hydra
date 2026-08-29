@@ -9,6 +9,9 @@ namespace hydra {
     // True when `path` exists on disk (any kind of entry).
     bool file_exists(std::string_view path);
 
+    // True when `path` points to a directory entity on disk.
+    bool is_directory(std::string_view path);
+
     // True when `path` is an existing regular file that can be opened for
     // reading. Never reads the file content.
     bool is_readable_file(std::string_view path);
