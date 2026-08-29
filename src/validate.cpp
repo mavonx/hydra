@@ -27,6 +27,12 @@ namespace hydra {
         return std::filesystem::exists(std::filesystem::path{std::string(path)}, ec);
     }
 
+    bool is_directory(std::string_view path) {
+        const std::filesystem::path dir_path{std::string(path)};
+        std::error_code ec;
+        return std::filesystem::is_directory(dir_path, ec) && !ec;
+    }
+
     bool is_readable_file(std::string_view path) {
         const std::filesystem::path file_path{std::string(path)};
 

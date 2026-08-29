@@ -22,6 +22,11 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
+    if (hydra::is_directory(csv_path)) {
+        std::cerr << "Error: path is a directory: " << csv_path << "\n";
+        return 1;
+    }
+
     if (!hydra::is_readable_file(csv_path)) {
         std::cerr << "Could not open file: " << csv_path << "\n";
         return 1;
