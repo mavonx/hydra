@@ -12,11 +12,6 @@ int main(int argc, char* argv[]) {
 
     const std::string_view csv_path = argv[1];
 
-    if (!hydra::has_csv_extension(csv_path)) {
-        std::cerr << "Error: file must be a .csv file\n";
-        return 1;
-    }
-
     if (!hydra::exists(csv_path)) {
         std::cerr << "Error: file does not exist: " << csv_path << "\n";
         return 1;
@@ -24,6 +19,11 @@ int main(int argc, char* argv[]) {
 
     if (hydra::is_directory(csv_path)) {
         std::cerr << "Error: path is a directory: " << csv_path << "\n";
+        return 1;
+    }
+
+    if (!hydra::has_csv_extension(csv_path)) {
+        std::cerr << "Error: file must be a .csv file\n";
         return 1;
     }
 
