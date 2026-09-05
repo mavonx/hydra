@@ -28,7 +28,7 @@ int main(int argc, char* argv[]) {
     }
 
     if (!hydra::is_readable_file(csv_path)) {
-        std::cerr << "Could not open file: " << csv_path << "\n";
+        std::cerr << "Error: could not open file: " << csv_path << "\n";
         return 1;
     }
 
