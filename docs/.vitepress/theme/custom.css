@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+  --font-sans: "JetBrains Mono", "Fira Code", "Fira Mono", "Roboto Mono", "Courier New", monospace;
+  --font-mono: "JetBrains Mono", "Fira Code", "Fira Mono", "Roboto Mono", "Courier New", monospace;
+  --vp-font-family-base: "JetBrains Mono", "Fira Code", "Fira Mono", "Roboto Mono", "Courier New", monospace;
+
+  --vp-c-bg: #dbeafe;
+  --vp-c-bg-alt: #dbeafe;
+  --vp-nav-bg-color: #00153c;
+  --vp-c-brand-1: #2563eb;
+  --vp-c-brand-2: #1d4ed8;
+  --vp-c-brand-3: #1e40af;
+  --vp-c-brand-soft: rgba(37, 99, 235, 0.14);
+}
+
+body, html {
+  font-family: var(--vp-font-family-base) !important;
+}
+
+.VPNav {
+  top: 16px !important;
+  left: 0 !important;
+  right: 0 !important;
+  pointer-events: none;
+  background: transparent !important;
+  border: none !important;
+}
+
+.VPNavBar {
+  max-width: 1050px !important;
+  margin: 0 auto !important;
+  background-color: var(--vp-nav-bg-color) !important;
+  border-radius: 9999px !important;
+  pointer-events: auto;
+  box-shadow: 0 10px 25px -5px rgba(0, 21, 60, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  padding: 0 28px !important;
+  height: 60px !important;
+}
+
+.VPNavBar .wrapper {
+  padding: 0 !important;
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.VPNavBar .container {
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  position: relative !important;
+}
+
+.VPNavBarTitle .title span {
+  display: inline-block !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+}
+
+.VPNavBarTitle {
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  z-index: 2;
+  flex-shrink: 0 !important;
+  margin-left: 10px !important;
+}
+
+.VPNavBarTitle .title {
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+}
+
+.VPNavBarTitle img.logo,
+.VPNavBarTitle .logo {
+  height: 28px !important;
+  max-height: 28px !important;
+  width: auto !important;
+  filter: brightness(0) invert(1) !important;
+  display: block !important;
+}
+
+.VPNavBarMenu {
+  display: flex !important;
+  align-items: center !important;
+  height: 100% !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  position: relative !important;
+  justify-content: center !important;
+}
+
+.VPNavBarMenuLink {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 100% !important;
+  color: #ffffff !important;
+  font-family: var(--vp-font-family-base) !important;
+  font-weight: 500 !important;
+  font-size: 13px !important;
+  letter-spacing: -0.01em !important;
+  line-height: 1 !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 12px !important;
+  outline: none !important;
+}
+
+.VPNavBarMenuLink:hover {
+  color: #60a5fa !important;
+}
+
+.VPNavBarMenuLink.active::after,
+.VPNavBarMenuLink:focus::after,
+.VPNavBarMenuLink:hover::after {
+  display: none !important;
+}
+
+.VPNavBarMenu .VPNavBarMenuLink:not([href*="discord"]):not([href*="github.com"]) {
+  position: relative !important;
+}
+
+.VPNavBarMenu .VPNavBarMenuLink[href*="discord"] {
+  position: absolute !important;
+  right: 40px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.VPNavBarMenu .VPNavBarMenuLink[href*="github.com"] {
+  position: absolute !important;
+  right: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.VPNavBarMenu .VPNavBarMenuLink[href*="discord"]::before {
+  content: " ";
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  background-color: currentColor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 127.14 96.36'%3E%3Cpath d='M107.7 8.07A105.15 105.15 0 0 0 81.47 0a72.06 72.06 0 0 0-3.36 6.83 97.68 97.68 0 0 0-29.11 0A72.37 72.37 0 0 0 45.64 0a105.89 105.89 0 0 0-26.25 8.09C2.79 32.65-1.71 56.6.54 80.21a105.73 105.73 0 0 0 32.17 16.15 77.7 77.7 0 0 0 6.89-11.11 68.42 68.42 0 0 1-10.85-5.18c.91-.66 1.8-1.34 2.66-2a75.57 75.57 0 0 0 64.32 0c.87.68 1.76 1.36 2.66 2a68.68 68.68 0 0 1-10.87 5.19 77 77 0 0 0 6.89 11.1 105.25 105.25 0 0 0 32.19-16.14c2.64-27.38-4.51-51.11-18.91-72.14zM42.45 65.69c-6.22 0-11.33-5.72-11.33-12.75s5-12.75 11.33-12.75c6.38 0 11.44 5.78 11.33 12.75 0 7.03-4.95 12.75-11.33 12.75zm42.24 0c-6.22 0-11.33-5.72-11.33-12.75s5-12.75 11.33-12.75c6.38 0 11.44 5.78 11.33 12.75 0 7.03-4.95 12.75-11.33 12.75z'/%3E%3C/svg%3E") no-repeat center / contain;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 127.14 96.36'%3E%3Cpath d='M107.7 8.07A105.15 105.15 0 0 0 81.47 0a72.06 72.06 0 0 0-3.36 6.83 97.68 97.68 0 0 0-29.11 0A72.37 72.37 0 0 0 45.64 0a105.89 105.89 0 0 0-26.25 8.09C2.79 32.65-1.71 56.6.54 80.21a105.73 105.73 0 0 0 32.17 16.15 77.7 77.7 0 0 0 6.89-11.11 68.42 68.42 0 0 1-10.85-5.18c.91-.66 1.8-1.34 2.66-2a75.57 75.57 0 0 0 64.32 0c.87.68 1.76 1.36 2.66 2a68.68 68.68 0 0 1-10.87 5.19 77 77 0 0 0 6.89 11.1 105.25 105.25 0 0 0 32.19-16.14c2.64-27.38-4.51-51.11-18.91-72.14zM42.45 65.69c-6.22 0-11.33-5.72-11.33-12.75s5-12.75 11.33-12.75c6.38 0 11.44 5.78 11.33 12.75 0 7.03-4.95 12.75-11.33 12.75zm42.24 0c-6.22 0-11.33-5.72-11.33-12.75s5-12.75 11.33-12.75c6.38 0 11.44 5.78 11.33 12.75 0 7.03-4.95 12.75-11.33 12.75z'/%3E%3C/svg%3E") no-repeat center / contain;
+}
+
+.VPNavBarMenu .VPNavBarMenuLink[href*="github.com"]::before {
+  content: " ";
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  background-color: currentColor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z'/%3E%3C/svg%3E") no-repeat center / contain;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z'/%3E%3C/svg%3E") no-repeat center / contain;
+}
+
+.VPSocialLink,
+.VPNavBarSocialLinks {
+  display: none !important;
+}
+
+.VPHero {
+  padding-top: 140px !important;
+}
+
+.VPNavBarMenuLink[href*="github.com"]::after,
+.VPNavBarMenuLink[href*="discord"]::after,
+.VPNavBarMenuLink[href*="github.com"] .icon,
+.VPNavBarMenuLink[href*="discord"] .icon,
+.VPNavBarMenuLink[href*="github.com"] .vpi-external-link,
+.VPNavBarMenuLink[href*="discord"] .vpi-external-link,
+.VPNavBarMenuLink[href*="github.com"] svg,
+.VPNavBarMenuLink[href*="discord"] svg,
+.VPNavBarMenuLink[href*="github.com"] span,
+.VPNavBarMenuLink[href*="discord"] span {
+  display: none !important;
+}
+
+.VPHero .tagline,
+.VPHero .actions,
+.VPHero .action,
+.VPHero a[class*="action"],
+.VPHero .btn {
+  display: none !important;
+}
+
+.VPHero .name,
+.VPHero h1.name {
+  display: none !important;
+}
