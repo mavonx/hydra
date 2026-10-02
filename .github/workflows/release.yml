@@ -1,0 +1,88 @@
+name: Release Binaries
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build ${{ matrix.platform }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            platform: windows
+            build_path: build/src/Release/hydra.exe
+            binary_name: hydra.exe
+            archive_name: hydra-windows.zip
+
+          - os: ubuntu-latest
+            platform: linux
+            build_path: build/src/hydra
+            binary_name: hydra
+            archive_name: hydra-linux.tar.gz
+
+          - os: macos-latest
+            platform: macos
+            build_path: build/src/hydra
+            binary_name: hydra
+            archive_name: hydra-macos.tar.gz
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build
+        run: cmake --build build --config Release --parallel
+
+      - name: Package Windows
+        if: runner.os == 'Windows'
+        shell: bash
+        run: |
+          cp "${{ matrix.build_path }}" "${{ matrix.binary_name }}"
+          7z a "${{ matrix.archive_name }}" "${{ matrix.binary_name }}"
+
+      - name: Package Linux/macOS
+        if: runner.os != 'Windows'
+        shell: bash
+        run: |
+          cp "${{ matrix.build_path }}" "${{ matrix.binary_name }}"
+          tar -czvf "${{ matrix.archive_name }}" "${{ matrix.binary_name }}"
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: hydra-${{ matrix.platform }}
+          path: ${{ matrix.archive_name }}
+          if-no-files-found: error
+          retention-days: 7
+
+  release:
+    name: Upload binaries to release
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: hydra-*
+          path: release
+          merge-multiple: true
+
+      - name: Upload binaries to GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          files: release/*
