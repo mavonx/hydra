@@ -31,7 +31,7 @@
 
 .VPNavBar {
   height: 60px;
-  padding: 0 40px;
+  padding: 0 min(40px, 4vw);
   background: var(--vp-c-bg);
   border: none;
 }
@@ -64,7 +64,7 @@
   align-items: center;
   flex-shrink: 0;
   z-index: 2;
-  margin-left: 140px;
+  margin-left: min(140px, 8vw);
 }
 
 .VPNavBarTitle .title {
@@ -84,7 +84,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-right: 140px;
+  margin-right: min(140px, 8vw);
   color: #ffffff;
   font-size: 13px;
   font-weight: 500;
@@ -105,14 +105,9 @@
   color: #b0b0b0;
 }
 
-@media (max-width: 768px) {
-  .VPNavBarTitle {
-    margin-left: 0;
-  }
-
-  .github-stars {
-    margin-right: 0;
-  }
+.VPNavBarExtra,
+.VPNavBarHamburger {
+  display: none !important;
 }
 
 .vp-doc a {
