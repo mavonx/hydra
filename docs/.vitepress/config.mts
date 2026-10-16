@@ -16,17 +16,12 @@ export default withMermaid(
       }
     },
     head: [
+      ['link', { rel: 'icon', type: 'image/png', href: '/hydra/favicon.png' }],
       ['meta', { property: 'og:title', content: 'hydra' }],
-      ['meta', { property: 'og:description', content: 'A fast, low-memory CLI for exploring massive CSV datasets without crashing.' }],
-      ['meta', { property: 'og:image', content: 'https://mavonx.github.io/hydra/logo.png' }],
-      ['meta', { property: 'og:image:width', content: '1200' }],
-      ['meta', { property: 'og:image:height', content: '630' }],
-      ['meta', { property: 'twitter:card', content: 'summary_large_image' }],
-      ['meta', { property: 'twitter:image', content: 'https://mavonx.github.io/hydra/logo.png' }]
+      ['meta', { property: 'og:description', content: 'A fast, low-memory CLI for exploring massive CSV datasets without crashing.' }]
     ],
     themeConfig: {
       siteTitle: 'hydra',
-      logo: { src: '/logo.png', alt: 'hydra logo' },
       nav: [
         { text: 'Docs', link: '/docs' },
         { text: 'Installation', link: '/installation' },
