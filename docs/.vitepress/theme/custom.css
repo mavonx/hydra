@@ -5,21 +5,54 @@
   --font-mono: "JetBrains Mono", "Fira Code", "Fira Mono", "Roboto Mono", "Courier New", monospace;
   --vp-font-family-base: "JetBrains Mono", "Fira Code", "Fira Mono", "Roboto Mono", "Courier New", monospace;
 
-  --vp-c-bg: #dbeafe;
-  --vp-c-bg-alt: #dbeafe;
-  --vp-nav-bg-color: #00153c;
-  --vp-c-brand-1: #2563eb;
-  --vp-c-brand-2: #1d4ed8;
-  --vp-c-brand-3: #1e40af;
-  --vp-c-brand-soft: rgba(37, 99, 235, 0.14);
+  --gold: #d4a017;
+  --gold-dark: #b8860b;
+  --gold-deeper: #8a6508;
+  --on-gold: #0a0a0a;
+
+  --vp-c-bg: #0a0a0a;
+  --vp-c-bg-alt: #101010;
+  --vp-c-bg-elv: #181818;
+  --vp-c-bg-soft: #141414;
+  --vp-c-divider: #2b2415;
+  --vp-c-gutter: #0a0a0a;
+
+  --vp-c-text-1: #efe9d8;
+  --vp-c-text-2: #aaa28d;
+  --vp-c-text-3: #7a735f;
+
+  --vp-c-brand-1: #d4a017;
+  --vp-c-brand-2: #b8860b;
+  --vp-c-brand-3: #8a6508;
+  --vp-c-brand-soft: rgba(184, 134, 11, 0.18);
+
+  --vp-button-brand-bg: #b8860b;
+  --vp-button-brand-hover-bg: #b8860b;
+  --vp-button-brand-active-bg: #8a6508;
+  --vp-button-brand-text: #0a0a0a;
+  --vp-button-brand-hover-text: #0a0a0a;
+  --vp-button-brand-active-text: #0a0a0a;
+  --vp-button-alt-hover-bg: #b8860b;
+  --vp-button-alt-hover-text: #0a0a0a;
+
+  --vp-nav-bg-color: rgba(10, 10, 10, 0.78);
 }
 
 body, html {
   font-family: var(--vp-font-family-base) !important;
 }
 
+html, body {
+  background: var(--vp-c-bg) !important;
+}
+
+::selection {
+  background: var(--gold-dark);
+  color: var(--on-gold);
+}
+
 .VPNav {
-  top: 16px !important;
+  top: 0 !important;
   left: 0 !important;
   right: 0 !important;
   pointer-events: none;
@@ -28,15 +61,23 @@ body, html {
 }
 
 .VPNavBar {
-  max-width: 1050px !important;
-  margin: 0 auto !important;
-  background-color: var(--vp-nav-bg-color) !important;
-  border-radius: 9999px !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  background-color: #0a0a0a !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-radius: 0 !important;
   pointer-events: auto;
-  box-shadow: 0 10px 25px -5px rgba(0, 21, 60, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
-  padding: 0 28px !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding: 0 40px !important;
   height: 60px !important;
+}
+
+.VPNavBar .divider,
+.VPNavBar .divider-line {
+  display: none !important;
 }
 
 .VPNavBar .wrapper {
@@ -52,6 +93,7 @@ body, html {
   align-items: center !important;
   justify-content: space-between !important;
   width: 100% !important;
+  max-width: none !important;
   position: relative !important;
 }
 
@@ -102,8 +144,8 @@ body, html {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  height: 100% !important;
-  color: #ffffff !important;
+  height: 36px !important;
+  color: white !important;
   font-family: var(--vp-font-family-base) !important;
   font-weight: 500 !important;
   font-size: 13px !important;
@@ -111,46 +153,53 @@ body, html {
   line-height: 1 !important;
   background: transparent !important;
   border: none !important;
-  padding: 0 12px !important;
+  border-radius: 9999px !important;
+  padding: 0 14px !important;
   outline: none !important;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.VPNavBarMenuLink:hover {
-  color: #60a5fa !important;
+.VPNavBarMenuLink.active {
+  color: var(--gold) !important;
 }
 
-.VPNavBarMenuLink.active::after,
-.VPNavBarMenuLink:focus::after,
+.VPNavBarMenuLink:hover,
+.VPNavBarMenuLink.active:hover {
+  background: transparent !important;
+}
+
+.VPNavBarMenuLink::after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 2px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--gold-dark);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
 .VPNavBarMenuLink:hover::after {
-  display: none !important;
+  transform: scaleX(1);
 }
 
-.VPNavBarMenu .VPNavBarMenuLink:not([href*="discord"]):not([href*="github.com"]) {
+.VPNavBarMenu .VPNavBarMenuLink:not([href*="github.com"]) {
   position: relative !important;
-}
-
-.VPNavBarMenu .VPNavBarMenuLink[href*="discord"] {
-  position: absolute !important;
-  right: 40px !important;
-  display: flex !important;
-  align-items: center !important;
 }
 
 .VPNavBarMenu .VPNavBarMenuLink[href*="github.com"] {
   position: absolute !important;
-  right: 0 !important;
+  right: -8px !important;
+  top: 50% !important;
+  transform: translateY(-50%);
   display: flex !important;
   align-items: center !important;
-}
-
-.VPNavBarMenu .VPNavBarMenuLink[href*="discord"]::before {
-  content: " ";
-  display: inline-block;
-  width: 18px;
-  height: 18px;
-  background-color: currentColor;
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 127.14 96.36'%3E%3Cpath d='M107.7 8.07A105.15 105.15 0 0 0 81.47 0a72.06 72.06 0 0 0-3.36 6.83 97.68 97.68 0 0 0-29.11 0A72.37 72.37 0 0 0 45.64 0a105.89 105.89 0 0 0-26.25 8.09C2.79 32.65-1.71 56.6.54 80.21a105.73 105.73 0 0 0 32.17 16.15 77.7 77.7 0 0 0 6.89-11.11 68.42 68.42 0 0 1-10.85-5.18c.91-.66 1.8-1.34 2.66-2a75.57 75.57 0 0 0 64.32 0c.87.68 1.76 1.36 2.66 2a68.68 68.68 0 0 1-10.87 5.19 77 77 0 0 0 6.89 11.1 105.25 105.25 0 0 0 32.19-16.14c2.64-27.38-4.51-51.11-18.91-72.14zM42.45 65.69c-6.22 0-11.33-5.72-11.33-12.75s5-12.75 11.33-12.75c6.38 0 11.44 5.78 11.33 12.75 0 7.03-4.95 12.75-11.33 12.75zm42.24 0c-6.22 0-11.33-5.72-11.33-12.75s5-12.75 11.33-12.75c6.38 0 11.44 5.78 11.33 12.75 0 7.03-4.95 12.75-11.33 12.75z'/%3E%3C/svg%3E") no-repeat center / contain;
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 127.14 96.36'%3E%3Cpath d='M107.7 8.07A105.15 105.15 0 0 0 81.47 0a72.06 72.06 0 0 0-3.36 6.83 97.68 97.68 0 0 0-29.11 0A72.37 72.37 0 0 0 45.64 0a105.89 105.89 0 0 0-26.25 8.09C2.79 32.65-1.71 56.6.54 80.21a105.73 105.73 0 0 0 32.17 16.15 77.7 77.7 0 0 0 6.89-11.11 68.42 68.42 0 0 1-10.85-5.18c.91-.66 1.8-1.34 2.66-2a75.57 75.57 0 0 0 64.32 0c.87.68 1.76 1.36 2.66 2a68.68 68.68 0 0 1-10.87 5.19 77 77 0 0 0 6.89 11.1 105.25 105.25 0 0 0 32.19-16.14c2.64-27.38-4.51-51.11-18.91-72.14zM42.45 65.69c-6.22 0-11.33-5.72-11.33-12.75s5-12.75 11.33-12.75c6.38 0 11.44 5.78 11.33 12.75 0 7.03-4.95 12.75-11.33 12.75zm42.24 0c-6.22 0-11.33-5.72-11.33-12.75s5-12.75 11.33-12.75c6.38 0 11.44 5.78 11.33 12.75 0 7.03-4.95 12.75-11.33 12.75z'/%3E%3C/svg%3E") no-repeat center / contain;
+  width: 36px !important;
+  padding: 0 !important;
 }
 
 .VPNavBarMenu .VPNavBarMenuLink[href*="github.com"]::before {
@@ -163,6 +212,14 @@ body, html {
   -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z'/%3E%3C/svg%3E") no-repeat center / contain;
 }
 
+.VPNavBarMenuLink[href*="github.com"]::after,
+.VPNavBarMenuLink[href*="github.com"] .icon,
+.VPNavBarMenuLink[href*="github.com"] .vpi-external-link,
+.VPNavBarMenuLink[href*="github.com"] svg,
+.VPNavBarMenuLink[href*="github.com"] span {
+  display: none !important;
+}
+
 .VPSocialLink,
 .VPNavBarSocialLinks {
   display: none !important;
@@ -170,19 +227,6 @@ body, html {
 
 .VPHero {
   padding-top: 140px !important;
-}
-
-.VPNavBarMenuLink[href*="github.com"]::after,
-.VPNavBarMenuLink[href*="discord"]::after,
-.VPNavBarMenuLink[href*="github.com"] .icon,
-.VPNavBarMenuLink[href*="discord"] .icon,
-.VPNavBarMenuLink[href*="github.com"] .vpi-external-link,
-.VPNavBarMenuLink[href*="discord"] .vpi-external-link,
-.VPNavBarMenuLink[href*="github.com"] svg,
-.VPNavBarMenuLink[href*="discord"] svg,
-.VPNavBarMenuLink[href*="github.com"] span,
-.VPNavBarMenuLink[href*="discord"] span {
-  display: none !important;
 }
 
 .VPHero .tagline,
@@ -196,4 +240,110 @@ body, html {
 .VPHero .name,
 .VPHero h1.name {
   display: none !important;
+}
+
+.VPSidebarItem .link {
+  border-radius: 8px;
+  padding-left: 8px !important;
+  padding-right: 8px !important;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.VPSidebarItem.is-active > .item .link .text {
+  color: var(--gold) !important;
+}
+
+.VPSidebarItem.level-0 > .item > h2.text,
+.VPSidebarItem.level-0 > .item > .text {
+  color: #ffffff !important;
+}
+
+.VPSidebarItem .link:hover,
+.VPSidebarItem.is-active > .item .link:hover {
+  background: var(--gold-dark) !important;
+}
+
+.VPSidebarItem .link:hover .text,
+.VPSidebarItem.is-active > .item .link:hover .text {
+  color: var(--on-gold) !important;
+}
+
+.vp-doc a {
+  border-radius: 4px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.vp-doc a:hover {
+  background: var(--gold-dark) !important;
+  color: var(--on-gold) !important;
+  text-decoration: none !important;
+}
+
+.vp-doc tr:hover td {
+  background: var(--gold-dark) !important;
+  color: var(--on-gold) !important;
+}
+
+.VPDocAsideOutline .outline-link {
+  border-radius: 6px;
+  padding: 2px 8px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.VPDocAsideOutline .outline-link:hover {
+  background: var(--gold-dark) !important;
+  color: var(--on-gold) !important;
+}
+
+.VPButton:hover {
+  background: var(--gold-dark) !important;
+  border-color: var(--gold-dark) !important;
+  color: var(--on-gold) !important;
+}
+
+.VPFeature:hover {
+  background: var(--gold-dark) !important;
+  border-color: var(--gold-dark) !important;
+}
+
+.VPFeature:hover .title,
+.VPFeature:hover .details,
+.VPFeature:hover .link-text {
+  color: var(--on-gold) !important;
+}
+
+.VPNavBarSearchButton:hover,
+.DocSearch-Button:hover {
+  background: var(--gold-dark) !important;
+  color: var(--on-gold) !important;
+}
+
+.VPDocFooter .pager-link:hover,
+.VPLocalNav button:hover,
+.VPNavScreenMenuLink:hover,
+.VPNavScreenMenuGroupLink:hover,
+.VPMenuLink a:hover,
+.VPFlyout:hover .button {
+  background: var(--gold-dark) !important;
+  color: var(--on-gold) !important;
+  border-color: var(--gold-dark) !important;
+}
+
+.VPDocFooter .pager-link:hover .title,
+.VPDocFooter .pager-link:hover .desc {
+  color: var(--on-gold) !important;
+}
+
+.vp-doc div[class*='language-'] button.copy:hover {
+  background-color: var(--gold-dark) !important;
+  border-color: var(--gold-dark) !important;
+}
+
+.VPFooter {
+  background: transparent !important;
+  border-top: 1px solid var(--vp-c-divider) !important;
+}
+
+.VPFooter .copyright {
+  color: var(--vp-c-text-2) !important;
 }
