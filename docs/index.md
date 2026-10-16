@@ -1,14 +1,5 @@
----
-layout: home
+### hydra
 
-hero:
-  name: "name section"
-  tagline: "tagline section"
-  actions:
-    - theme: brand
-      text: Install now
-      link: #
-    - theme: alt
-      text: Read the docs
-      link: #
----
+```powershell
+$echo "Hello World!"
+```

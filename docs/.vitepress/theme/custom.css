@@ -1,49 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 :root {
-  --font-sans: "JetBrains Mono", "Fira Code", "Fira Mono", "Roboto Mono", "Courier New", monospace;
-  --font-mono: "JetBrains Mono", "Fira Code", "Fira Mono", "Roboto Mono", "Courier New", monospace;
   --vp-font-family-base: "JetBrains Mono", "Fira Code", "Fira Mono", "Roboto Mono", "Courier New", monospace;
+  --vp-font-family-mono: var(--vp-font-family-base);
 
-  --gold: #d4a017;
   --gold-dark: #b8860b;
-  --gold-deeper: #8a6508;
   --on-gold: #0a0a0a;
 
   --vp-c-bg: #0a0a0a;
-  --vp-c-bg-alt: #101010;
-  --vp-c-bg-elv: #181818;
-  --vp-c-bg-soft: #141414;
   --vp-c-divider: #2b2415;
-  --vp-c-gutter: #0a0a0a;
 
   --vp-c-text-1: #efe9d8;
   --vp-c-text-2: #aaa28d;
-  --vp-c-text-3: #7a735f;
 
   --vp-c-brand-1: #d4a017;
   --vp-c-brand-2: #b8860b;
   --vp-c-brand-3: #8a6508;
   --vp-c-brand-soft: rgba(184, 134, 11, 0.18);
-
-  --vp-button-brand-bg: #b8860b;
-  --vp-button-brand-hover-bg: #b8860b;
-  --vp-button-brand-active-bg: #8a6508;
-  --vp-button-brand-text: #0a0a0a;
-  --vp-button-brand-hover-text: #0a0a0a;
-  --vp-button-brand-active-text: #0a0a0a;
-  --vp-button-alt-hover-bg: #b8860b;
-  --vp-button-alt-hover-text: #0a0a0a;
-
-  --vp-nav-bg-color: rgba(10, 10, 10, 0.78);
-}
-
-body, html {
-  font-family: var(--vp-font-family-base) !important;
-}
-
-html, body {
-  background: var(--vp-c-bg) !important;
 }
 
 ::selection {
@@ -52,220 +25,94 @@ html, body {
 }
 
 .VPNav {
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  pointer-events: none;
-  background: transparent !important;
-  border: none !important;
+  background: transparent;
+  border: none;
 }
 
 .VPNavBar {
-  width: 100% !important;
-  max-width: none !important;
-  margin: 0 !important;
-  background-color: #0a0a0a !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-  border-radius: 0 !important;
-  pointer-events: auto;
-  box-shadow: none !important;
-  border: none !important;
-  padding: 0 40px !important;
-  height: 60px !important;
+  height: 60px;
+  padding: 0 40px;
+  background: var(--vp-c-bg);
+  border: none;
 }
 
 .VPNavBar .divider,
 .VPNavBar .divider-line {
-  display: none !important;
+  display: none;
 }
 
 .VPNavBar .wrapper {
-  padding: 0 !important;
-  height: 100% !important;
-  display: flex !important;
-  align-items: center !important;
+  height: 100%;
+  padding: 0;
+  display: flex;
+  align-items: center;
 }
 
 .VPNavBar .container {
-  height: 100% !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  width: 100% !important;
-  max-width: none !important;
-  position: relative !important;
-}
-
-.VPNavBarTitle .title span {
-  display: inline-block !important;
-  color: #ffffff !important;
-  font-weight: 600 !important;
-  font-size: 16px !important;
+  position: relative;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .VPNavBarTitle {
-  height: 100% !important;
-  display: flex !important;
-  align-items: center !important;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
   z-index: 2;
-  flex-shrink: 0 !important;
-  margin-left: 10px !important;
+  margin-left: 140px;
 }
 
 .VPNavBarTitle .title {
-  height: 100% !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: 4px !important;
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 
-.VPNavBarTitle img.logo,
-.VPNavBarTitle .logo {
-  height: 28px !important;
-  max-height: 28px !important;
-  width: auto !important;
-  filter: brightness(0) invert(1) !important;
-  display: block !important;
+.VPNavBarTitle .title span {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
 }
 
-.VPNavBarMenu {
-  display: flex !important;
-  align-items: center !important;
-  height: 100% !important;
-  width: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  position: relative !important;
-  justify-content: center !important;
+.github-stars {
+  --github-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z'/%3E%3C/svg%3E");
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: 140px;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease;
 }
 
-.VPNavBarMenuLink {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  height: 36px !important;
-  color: white !important;
-  font-family: var(--vp-font-family-base) !important;
-  font-weight: 500 !important;
-  font-size: 13px !important;
-  letter-spacing: -0.01em !important;
-  line-height: 1 !important;
-  background: transparent !important;
-  border: none !important;
-  border-radius: 9999px !important;
-  padding: 0 14px !important;
-  outline: none !important;
-  transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-.VPNavBarMenuLink.active {
-  color: var(--gold) !important;
-}
-
-.VPNavBarMenuLink:hover,
-.VPNavBarMenuLink.active:hover {
-  background: transparent !important;
-}
-
-.VPNavBarMenuLink::after {
+.github-stars::before {
   content: "";
-  display: block;
-  position: absolute;
-  left: 14px;
-  right: 14px;
-  bottom: 2px;
-  height: 2px;
-  border-radius: 2px;
-  background: var(--gold-dark);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s ease;
-}
-
-.VPNavBarMenuLink:hover::after {
-  transform: scaleX(1);
-}
-
-.VPNavBarMenu .VPNavBarMenuLink:not([href*="github.com"]) {
-  position: relative !important;
-}
-
-.VPNavBarMenu .VPNavBarMenuLink[href*="github.com"] {
-  position: absolute !important;
-  right: -8px !important;
-  top: 50% !important;
-  transform: translateY(-50%);
-  display: flex !important;
-  align-items: center !important;
-  width: 36px !important;
-  padding: 0 !important;
-}
-
-.VPNavBarMenu .VPNavBarMenuLink[href*="github.com"]::before {
-  content: " ";
-  display: inline-block;
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   background-color: currentColor;
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z'/%3E%3C/svg%3E") no-repeat center / contain;
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z'/%3E%3C/svg%3E") no-repeat center / contain;
+  mask: var(--github-icon) no-repeat center / contain;
+  -webkit-mask: var(--github-icon) no-repeat center / contain;
 }
 
-.VPNavBarMenuLink[href*="github.com"]::after,
-.VPNavBarMenuLink[href*="github.com"] .icon,
-.VPNavBarMenuLink[href*="github.com"] .vpi-external-link,
-.VPNavBarMenuLink[href*="github.com"] svg,
-.VPNavBarMenuLink[href*="github.com"] span {
-  display: none !important;
+.github-stars:hover {
+  color: #b0b0b0;
 }
 
-.VPSocialLink,
-.VPNavBarSocialLinks {
-  display: none !important;
-}
+@media (max-width: 768px) {
+  .VPNavBarTitle {
+    margin-left: 0;
+  }
 
-.VPHero {
-  padding-top: 140px !important;
-}
-
-.VPHero .tagline,
-.VPHero .actions,
-.VPHero .action,
-.VPHero a[class*="action"],
-.VPHero .btn {
-  display: none !important;
-}
-
-.VPHero .name,
-.VPHero h1.name {
-  display: none !important;
-}
-
-.VPSidebarItem .link {
-  border-radius: 8px;
-  padding-left: 8px !important;
-  padding-right: 8px !important;
-  transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-.VPSidebarItem.is-active > .item .link .text {
-  color: var(--gold) !important;
-}
-
-.VPSidebarItem.level-0 > .item > h2.text,
-.VPSidebarItem.level-0 > .item > .text {
-  color: #ffffff !important;
-}
-
-.VPSidebarItem .link:hover,
-.VPSidebarItem.is-active > .item .link:hover {
-  background: var(--gold-dark) !important;
-}
-
-.VPSidebarItem .link:hover .text,
-.VPSidebarItem.is-active > .item .link:hover .text {
-  color: var(--on-gold) !important;
+  .github-stars {
+    margin-right: 0;
+  }
 }
 
 .vp-doc a {
@@ -274,76 +121,30 @@ html, body {
 }
 
 .vp-doc a:hover {
-  background: var(--gold-dark) !important;
-  color: var(--on-gold) !important;
-  text-decoration: none !important;
+  background: var(--gold-dark);
+  color: var(--on-gold);
+  text-decoration: none;
 }
 
 .vp-doc tr:hover td {
-  background: var(--gold-dark) !important;
-  color: var(--on-gold) !important;
+  background: var(--gold-dark);
+  color: var(--on-gold);
 }
 
-.VPDocAsideOutline .outline-link {
-  border-radius: 6px;
-  padding: 2px 8px;
-  transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-.VPDocAsideOutline .outline-link:hover {
-  background: var(--gold-dark) !important;
-  color: var(--on-gold) !important;
-}
-
-.VPButton:hover {
-  background: var(--gold-dark) !important;
-  border-color: var(--gold-dark) !important;
-  color: var(--on-gold) !important;
-}
-
-.VPFeature:hover {
-  background: var(--gold-dark) !important;
-  border-color: var(--gold-dark) !important;
-}
-
-.VPFeature:hover .title,
-.VPFeature:hover .details,
-.VPFeature:hover .link-text {
-  color: var(--on-gold) !important;
-}
-
-.VPNavBarSearchButton:hover,
-.DocSearch-Button:hover {
-  background: var(--gold-dark) !important;
-  color: var(--on-gold) !important;
-}
-
-.VPDocFooter .pager-link:hover,
-.VPLocalNav button:hover,
-.VPNavScreenMenuLink:hover,
-.VPNavScreenMenuGroupLink:hover,
-.VPMenuLink a:hover,
-.VPFlyout:hover .button {
-  background: var(--gold-dark) !important;
-  color: var(--on-gold) !important;
-  border-color: var(--gold-dark) !important;
-}
-
-.VPDocFooter .pager-link:hover .title,
-.VPDocFooter .pager-link:hover .desc {
-  color: var(--on-gold) !important;
+.vp-doc [class*='language-'] > span.lang {
+  display: none;
 }
 
 .vp-doc div[class*='language-'] button.copy:hover {
-  background-color: var(--gold-dark) !important;
-  border-color: var(--gold-dark) !important;
+  background-color: var(--gold-dark);
+  border-color: var(--gold-dark);
 }
 
 .VPFooter {
-  background: transparent !important;
-  border-top: 1px solid var(--vp-c-divider) !important;
+  background: transparent;
+  border-top: 1px solid var(--vp-c-divider);
 }
 
 .VPFooter .copyright {
-  color: var(--vp-c-text-2) !important;
+  color: var(--vp-c-text-2);
 }
