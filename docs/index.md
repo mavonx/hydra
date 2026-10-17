@@ -1,5 +1,1 @@
-### hydra
-
-```powershell
-$echo "Hello World!"
-```
+### Index

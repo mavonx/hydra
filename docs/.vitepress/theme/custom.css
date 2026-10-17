@@ -4,10 +4,15 @@
   --vp-font-family-base: "JetBrains Mono", "Fira Code", "Fira Mono", "Roboto Mono", "Courier New", monospace;
   --vp-font-family-mono: var(--vp-font-family-base);
 
+  --vp-nav-height: 60px;
+  --sidebar-inset: clamp(32px, 5vw, 96px);
+
   --gold-dark: #b8860b;
   --on-gold: #0a0a0a;
 
   --vp-c-bg: #0a0a0a;
+  --vp-sidebar-bg-color: var(--vp-c-bg);
+  --menu-highlight: rgba(255, 255, 255, 0.06);
   --vp-c-divider: #2b2415;
 
   --vp-c-text-1: #efe9d8;
@@ -17,6 +22,12 @@
   --vp-c-brand-2: #b8860b;
   --vp-c-brand-3: #8a6508;
   --vp-c-brand-soft: rgba(184, 134, 11, 0.18);
+}
+
+@property --scrollbar-alpha {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 0;
 }
 
 ::selection {
@@ -30,10 +41,49 @@
 }
 
 .VPNavBar {
-  height: 60px;
   padding: 0 min(40px, 4vw);
-  background: var(--vp-c-bg);
+  background: var(--vp-c-bg) !important;
   border: none;
+}
+
+.VPNavBar.has-sidebar .title {
+  border: none !important;
+  background: transparent !important;
+}
+
+@media (min-width: 960px) {
+  .VPNavBar.has-sidebar .container > .title {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: auto !important;
+    padding: 0 0 0 var(--sidebar-inset) !important;
+  }
+
+  .VPNavBar.has-sidebar .VPNavBarTitle {
+    margin-left: 0;
+  }
+}
+
+.VPNavBar.has-sidebar .content {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+@media (min-width: 960px) {
+  .VPSidebar {
+    top: var(--vp-nav-height) !important;
+    padding-top: 24px !important;
+    padding-left: var(--sidebar-inset) !important;
+    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 14px), rgba(0, 0, 0, var(--scrollbar-alpha)) calc(100% - 14px));
+    mask-image: linear-gradient(to right, #000 calc(100% - 14px), rgba(0, 0, 0, var(--scrollbar-alpha)) calc(100% - 14px));
+    transition: opacity 0.5s, visibility 0.5s, transform 0.25s cubic-bezier(0.19, 1, 0.22, 1), --scrollbar-alpha 0.3s ease !important;
+  }
+
+  .VPSidebar .curtain {
+    display: none;
+  }
 }
 
 .VPNavBar .divider,
@@ -49,7 +99,6 @@
 }
 
 .VPNavBar .container {
-  position: relative;
   width: 100%;
   max-width: none;
   height: 100%;
@@ -110,6 +159,49 @@
   display: none !important;
 }
 
+.VPSidebar .group + .group {
+  border-top: none !important;
+}
+
+.VPSidebarItem .link {
+  margin: 2px 0 2px -12px;
+  padding: 1px 12px;
+  border-radius: 10px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.VPSidebarItem.level-0 > .item .text {
+  color: #ffffff;
+}
+
+.VPSidebarItem:not(.level-0) > .item .text {
+  color: #a1a1aa;
+}
+
+.VPSidebar .VPSidebarItem.level-0 {
+  padding-bottom: 8px;
+}
+
+.VPSidebarItem.level-0 > .items {
+  padding-left: 14px;
+}
+
+.VPSidebarItem:not(.level-0).is-active > .item > .link {
+  background: var(--menu-highlight);
+}
+
+.VPSidebarItem:not(.is-active) > .item > .link:hover {
+  background: var(--menu-highlight) !important;
+}
+
+.VPSidebarItem:not(.is-active) > .item > .link:hover .text {
+  color: var(--vp-c-text-1) !important;
+}
+
+.vp-doc .header-anchor {
+  display: none;
+}
+
 .vp-doc a {
   border-radius: 4px;
   transition: background-color 0.2s ease, color 0.2s ease;
@@ -133,6 +225,102 @@
 .vp-doc div[class*='language-'] button.copy:hover {
   background-color: var(--gold-dark);
   border-color: var(--gold-dark);
+}
+
+.VPDocFooter .prev-next {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  border-top: none;
+  padding-top: 0;
+}
+
+.VPDocFooter .pager:has(.next) {
+  grid-column: 2;
+}
+
+.VPLocalNav .menu-text,
+.VPLocalNavOutlineDropdown {
+  display: none;
+}
+
+.VPDocFooter .pager-link {
+  padding: 0;
+  border: none;
+}
+
+.VPDocFooter .pager-link .desc {
+  display: none;
+}
+
+.VPDocFooter .pager-link .title {
+  color: var(--vp-c-text-1);
+  font-size: 15px;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.VPDocFooter .pager-link:hover .title {
+  color: var(--vp-c-brand-1);
+}
+
+.VPDocFooter .pager-link.prev .title::before,
+.VPDocFooter .pager-link.next .title::after {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  vertical-align: middle;
+  border: solid currentColor;
+  transform: rotate(45deg);
+}
+
+.VPDocFooter .pager-link.prev .title::before {
+  margin-right: 12px;
+  border-width: 0 0 2px 2px;
+}
+
+.VPDocFooter .pager-link.next .title::after {
+  margin-left: 12px;
+  border-width: 2px 2px 0 0;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gold-dark);
+  border: 2px solid var(--vp-c-bg);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--vp-c-brand-1);
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--gold-dark) transparent;
+  }
+}
+
+.VPSidebar:hover {
+  --scrollbar-alpha: 1;
 }
 
 .VPFooter {
