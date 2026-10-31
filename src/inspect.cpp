@@ -1,6 +1,8 @@
 #include <filesystem>
 #include <fstream>
 #include <string>
+#include <vector>
+#include <sstream>
 
 #include "hydra/inspect.hpp"
 
@@ -33,5 +35,26 @@ namespace hydra {
         }
 
         return rows;
+    }
+
+    std::vector<std::string> get_csv_headers(std::string_view path) {
+        std::ifstream file(std::string{path}, std::ios::binary);
+        if(!file.is_open()) {
+            return {};
+        }
+
+        std::string line;
+        if(!std::getline(file, line)) {
+            return {};
+        }
+
+        std::stringstream ss(line);
+        std::string column;
+        std::vector<std::string> headers;
+        while(std::getline(ss, column, ',')) {
+            headers.push_back(column);
+        }
+
+        return headers;
     }
 }
