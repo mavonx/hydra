@@ -2,6 +2,10 @@
 #include <iomanip>
 #include <sstream>
 #include <string>
+#include <vector>
+#include <ftxui/component/component.hpp>
+#include <ftxui/dom/elements.hpp>
+#include <ftxui/dom/table.hpp>
 
 #include "hydra/renderer.hpp"
 
@@ -11,7 +15,8 @@ namespace hydra {
     void render(
         std::string_view csv_path,
         double file_size_gb,
-        std::size_t total_rows
+        std::size_t total_rows,
+        std::vector<std::string> headers
     ) {
         auto screen = ScreenInteractive::FullscreenAlternateScreen();
 
@@ -28,6 +33,21 @@ namespace hydra {
             formatted_size +
             " GB)";
 
+        std::vector<std::vector<std::string>> table_data;
+        table_data.push_back({" # ", "Column"});
+
+        for (size_t i = 0; i < headers.size(); ++i) {
+            table_data.push_back({" " + std::to_string(i + 1) + " ", headers[i]});
+        }
+
+        auto table = Table(table_data);
+
+        table.SelectAll().Separator(LIGHT);
+        table.SelectAll().DecorateCells(center);
+        table.SelectAll().Decorate(color(Color::White));
+
+        auto table_element = table.Render();
+
         auto renderer = Renderer([&] {
             auto top = hbox({
                 text(file_info),
@@ -41,6 +61,11 @@ namespace hydra {
 
             return vbox({
                 top,
+                separatorEmpty(),
+                hbox({
+                    table_element,
+                    filler()
+                }),
                 filler(),
                 bottom
             });
