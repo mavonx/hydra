@@ -32,9 +32,11 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
+    const auto [file_size, file_size_unit] = hydra::get_file_size(csv_path);
     hydra::render(
         csv_path,
-        hydra::get_file_size_gb(csv_path),
+        file_size,
+        file_size_unit,
         hydra::count_csv_rows(csv_path),
         hydra::get_csv_headers(csv_path)
     );
