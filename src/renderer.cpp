@@ -16,7 +16,7 @@ namespace hydra {
         std::string_view csv_path,
         double file_size_gb,
         std::size_t total_rows,
-        std::vector<std::string> headers
+        const std::vector<std::string>& headers
     ) {
         auto screen = ScreenInteractive::FullscreenAlternateScreen();
 
