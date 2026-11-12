@@ -1,5 +1,7 @@
 import DefaultTheme from 'vitepress/theme';
+
 import stars from './stars';
+import SidebarToggle from './SidebarToggle';
 
 import { h } from 'vue';
 import type { Theme } from 'vitepress';
@@ -12,7 +14,8 @@ export default {
     DefaultTheme.Layout,
     null,
     {
-      'nav-bar-content-after': () => h(stars)
+      'nav-bar-content-after': () => h(stars),
+      'layout-top': () => h(SidebarToggle)
     }
   )
 } satisfies Theme;

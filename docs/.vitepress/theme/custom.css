@@ -1,23 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
+html {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
+
 :root {
   --vp-font-family-base: "JetBrains Mono", "Fira Code", "Fira Mono", "Roboto Mono", "Courier New", monospace;
   --vp-font-family-mono: var(--vp-font-family-base);
-
   --vp-nav-height: 60px;
   --sidebar-inset: clamp(32px, 5vw, 96px);
-
   --gold-dark: #b8860b;
   --on-gold: #0a0a0a;
-
   --vp-c-bg: #0a0a0a;
   --vp-sidebar-bg-color: var(--vp-c-bg);
   --menu-highlight: rgba(255, 255, 255, 0.06);
   --vp-c-divider: #2b2415;
-
   --vp-c-text-1: #efe9d8;
   --vp-c-text-2: #aaa28d;
-
   --vp-c-brand-1: #d4a017;
   --vp-c-brand-2: #b8860b;
   --vp-c-brand-3: #8a6508;
@@ -78,7 +78,7 @@
     padding-left: var(--sidebar-inset) !important;
     -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 14px), rgba(0, 0, 0, var(--scrollbar-alpha)) calc(100% - 14px));
     mask-image: linear-gradient(to right, #000 calc(100% - 14px), rgba(0, 0, 0, var(--scrollbar-alpha)) calc(100% - 14px));
-    transition: opacity 0.5s, visibility 0.5s, transform 0.25s cubic-bezier(0.19, 1, 0.22, 1), --scrollbar-alpha 0.3s ease !important;
+    transition: --scrollbar-alpha 0.3s ease !important;
   }
 
   .VPSidebar .curtain {
@@ -213,6 +213,11 @@
   text-decoration: none;
 }
 
+.vp-doc h2 {
+  border-top: none;
+  padding-top: 0;
+}
+
 .vp-doc tr:hover td {
   background: var(--gold-dark);
   color: var(--on-gold);
@@ -237,6 +242,23 @@
 
 .VPDocFooter .pager:has(.next) {
   grid-column: 2;
+}
+
+.VPLocalNav {
+  border: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  background: var(--vp-c-bg) !important;
+}
+
+.VPLocalNav .container,
+.VPLocalNav .menu {
+  border: none !important;
+}
+
+.VPLocalNav::after,
+.VPLocalNav::before {
+  display: none !important;
 }
 
 .VPLocalNav .menu-text,
@@ -330,4 +352,124 @@
 
 .VPFooter .copyright {
   color: var(--vp-c-text-2);
+}
+
+.mem-svg text {
+  fill: #ffffff;
+}
+
+.mem-svg text::selection {
+  fill: var(--on-gold);
+  color: var(--on-gold);
+  background: var(--gold-dark);
+}
+
+.sidebar-toggle {
+  display: none;
+}
+
+@media (min-width: 960px) {
+  :root {
+    --sidebar-w: var(--vp-sidebar-width);
+  }
+
+  .sidebar-toggle {
+    position: fixed;
+    z-index: 100;
+    top: 50%;
+    left: calc(var(--sidebar-w) - 26px);
+    transform: translateY(-50%);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    color: var(--on-gold);
+    background: var(--gold-dark);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  .sidebar-toggle::before,
+  .sidebar-toggle::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    width: 1px;
+    height: 120px;
+    background: var(--gold-dark);
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+
+  .sidebar-toggle::before {
+    bottom: calc(100% + 8px);
+  }
+
+  .sidebar-toggle::after {
+    top: calc(100% + 8px);
+  }
+
+  .sidebar-toggle:hover {
+    background: var(--vp-c-brand-1);
+  }
+
+  .sidebar-toggle:focus-visible {
+    outline: 2px solid var(--vp-c-text-1);
+    outline-offset: 3px;
+  }
+
+  html.sidebar-collapsed .sidebar-toggle {
+    left: 6px;
+  }
+
+  html.sidebar-collapsed .sidebar-toggle svg {
+    transform: translateX(1px);
+  }
+
+  html.sidebar-collapsed .VPSidebar {
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .VPContent.has-sidebar,
+  .VPFooter.has-sidebar,
+  .VPLocalNav.has-sidebar {
+    transition: padding-left 0.25s ease;
+  }
+
+  html.sidebar-collapsed .VPContent.has-sidebar,
+  html.sidebar-collapsed .VPFooter.has-sidebar,
+  html.sidebar-collapsed .VPLocalNav.has-sidebar {
+    padding-left: 40px !important;
+  }
+
+  html.sidebar-collapsed .VPDoc .container,
+  html.sidebar-collapsed .VPDoc .content,
+  html.sidebar-collapsed .VPDoc .content-container {
+    max-width: none !important;
+  }
+}
+
+@media (min-width: 1440px) {
+  :root {
+    --sidebar-w: calc((100% - (var(--vp-layout-max-width) - 64px)) / 2 + var(--vp-sidebar-width) - 32px);
+  }
+}
+
+.VPDocAside {
+  display: none !important;
+}
+
+@media (min-width: 960px) {
+  .VPDoc.has-aside .content-container {
+    max-width: none !important;
+  }
+
+  .VPDoc.has-aside .content {
+    padding-right: 0 !important;
+  }
 }
