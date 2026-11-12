@@ -3,19 +3,30 @@
 #include <string>
 #include <vector>
 #include <sstream>
-
+#include <array>
 #include "hydra/inspect.hpp"
 
 namespace hydra {
-    double get_file_size_gb(std::string_view path) {
+    std::pair<double, std::string_view> get_file_size(std::string_view path) {
         std::error_code ec;
+        constexpr double base = 1024.0;
+        constexpr std::array<std::string_view, 4> units{
+            "B", "KB", "MB", "GB"
+        };
+
         const auto bytes = std::filesystem::file_size(std::filesystem::path{std::string(path)}, ec);
         if(ec) {
-            return 0.00;
+            return {0.00, units[0]};
         }
 
-        // 1 GB = 1024 * 1024 * 1024 bytes
-        return static_cast<double>(bytes) / (1024.0 * 1024.0 * 1024.0);
+        double size = static_cast<double>(bytes);
+        std::size_t unit_index = 0;
+        while (size >= base && unit_index < units.size() - 1) {
+            size /= base;
+            ++unit_index;
+        }
+
+        return {size, units[unit_index]};
     }
 
     std::size_t count_csv_rows(std::string_view path) {

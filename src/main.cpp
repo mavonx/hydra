@@ -34,7 +34,7 @@ int main(int argc, char* argv[]) {
 
     hydra::render(
         csv_path,
-        hydra::get_file_size_gb(csv_path),
+        hydra::get_file_size(csv_path),
         hydra::count_csv_rows(csv_path),
         hydra::get_csv_headers(csv_path)
     );

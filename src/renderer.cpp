@@ -14,14 +14,15 @@ using namespace ftxui;
 namespace hydra {
     void render(
         std::string_view csv_path,
-        double file_size_gb,
+        std::pair<double, std::string_view> file_size,
         std::size_t total_rows,
         const std::vector<std::string>& headers
     ) {
         auto screen = ScreenInteractive::FullscreenAlternateScreen();
 
+        auto [size, unit] = file_size;
         std::ostringstream stream;
-        stream << std::fixed << std::setprecision(2) << file_size_gb;
+        stream << std::fixed << std::setprecision(unit == "B" ? 0 : 2) << size;
         std::string formatted_size = stream.str();
 
         const std::string file_info =
@@ -31,7 +32,9 @@ namespace hydra {
             " rows " +
             "(file: " +
             formatted_size +
-            " GB)";
+            " " +
+            std::string(unit) +
+            ")";
 
         std::vector<std::vector<std::string>> table_data;
         table_data.push_back({" # ", "Column"});
