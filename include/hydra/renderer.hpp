@@ -7,10 +7,8 @@
 namespace hydra {
     void render(
         std::string_view csv_path,
-        double file_size_gb,
+        std::pair<double, std::string_view> file_size,
         std::size_t total_rows,
         const std::vector<std::string>& headers
     );
-
-    std::string get_file_size_formatted(double size);
 }
