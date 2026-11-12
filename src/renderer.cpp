@@ -20,9 +20,7 @@ namespace hydra {
     ) {
         auto screen = ScreenInteractive::FullscreenAlternateScreen();
 
-        std::ostringstream stream;
-        stream << std::fixed << std::setprecision(2) << file_size_gb;
-        std::string formatted_size = stream.str();
+        std::string formatted_size = get_file_size_formatted(file_size_gb);
 
         const std::string file_info =
             std::string(csv_path) +
@@ -31,7 +29,7 @@ namespace hydra {
             " rows " +
             "(file: " +
             formatted_size +
-            " GB)";
+            ")";
 
         std::vector<std::vector<std::string>> table_data;
         table_data.push_back({" # ", "Column"});
@@ -81,5 +79,22 @@ namespace hydra {
         });
 
         screen.Loop(component);
+    }
+
+    std::string get_file_size_formatted(double file_size) {
+        std::vector<std::string> size_types{
+            "GB", "MB", "KB", "B"
+        };
+
+        std::size_t type_index = 0;
+        while (file_size < 1.0 && type_index < size_types.size() - 1) {
+            file_size *= 1024;
+            ++type_index;
+        }
+
+        std::ostringstream stream;
+        stream << std::fixed << std::setprecision(2) << file_size;
+
+        return stream.str() + " " + size_types[type_index];
     }
 }

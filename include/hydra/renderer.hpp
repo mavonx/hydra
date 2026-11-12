@@ -11,4 +11,6 @@ namespace hydra {
         std::size_t total_rows,
         const std::vector<std::string>& headers
     );
+
+    std::string get_file_size_formatted(double size);
 }
